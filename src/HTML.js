@@ -8,6 +8,7 @@ import {
   Dimensions,
   Linking,
 } from "react-native";
+import { Typography } from "../../../App/Components";
 import {
   cssStringToRNStyle,
   getElementClassStyles,
@@ -660,7 +661,7 @@ export default class HTML extends PureComponent {
 
           const classStyles = getElementClassStyles(attribs, classesStyles);
           const textElement = data ? (
-            <Text
+            <Typography
               style={computeTextStyles(element, {
                 defaultTextStyles: this.defaultTextStyles,
                 tagsStyles,
@@ -674,7 +675,7 @@ export default class HTML extends PureComponent {
               {...renderersProps}
             >
               {data}
-            </Text>
+            </Typography>
           ) : (
             false
           );
@@ -723,12 +724,12 @@ export default class HTML extends PureComponent {
         remoteErrorView(this.props, this.state)
       ) : (
         <View style={{ flex: 1, alignItems: "center" }}>
-          <Text
+          <Typography
             allowFontScaling={allowFontScaling}
             style={{ fontStyle: "italic", fontSize: 16 }}
           >
             Could not load {this.props.uri}
-          </Text>
+          </Typography>
         </View>
       );
     }
