@@ -83,6 +83,7 @@ export default class HTML extends PureComponent {
     WebView: PropTypes.elementType,
     defaultTextProps: PropTypes.object,
     defaultWebViewProps: PropTypes.object,
+    defaultTextComponent: PropTypes.bool,
     source: PropTypes.oneOfType([
       PropTypes.shape({
         uri: PropTypes.string.isRequired,
@@ -121,6 +122,7 @@ export default class HTML extends PureComponent {
   static defaultProps = {
     allowWhitespaceNodes: false,
     renderers: HTMLRenderers,
+    defaultTextComponent: false,
     debug: false,
     emSize: 14,
     ptSize: 1.3,
@@ -658,10 +660,10 @@ export default class HTML extends PureComponent {
               ...renderersProps,
             });
           }
-
+          const TextComponent = this.props.defaultTextComponent === true ? Text : Typography;
           const classStyles = getElementClassStyles(attribs, classesStyles);
           const textElement = data ? (
-            <Typography
+            <TextComponent
               style={computeTextStyles(element, {
                 defaultTextStyles: this.defaultTextStyles,
                 tagsStyles,
@@ -675,7 +677,7 @@ export default class HTML extends PureComponent {
               {...renderersProps}
             >
               {data}
-            </Typography>
+            </TextComponent>
           ) : (
             false
           );
